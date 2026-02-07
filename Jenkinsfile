@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = "sharikm/burger-project-web"
         DOCKER_TAG   = "55"
-        GIT_REPO     = "git@github.com:sharik-malik/burger-project.git"
+        GIT_REPO     = "https://github.com/sharik-malik/burger-project.git"
         GIT_BRANCH   = "main"
     }
 
@@ -12,7 +12,9 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
-                git branch: "${GIT_BRANCH}", url: "${GIT_REPO}"
+                git branch: "${GIT_BRANCH}",
+                    credentialsId: 'github-creds',
+                    url: "${GIT_REPO}"
             }
         }
 
