@@ -3,18 +3,18 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "sharikm/burger-project-web"
-        DOCKER_TAG   = "55"
-        GIT_REPO     = "https://github.com/sharik-malik/burger-project.git"
+        DOCKER_TAG   = "latest"
+        GIT_URL      = "https://github.com/sharik-malik/static-website-demo.git"
         GIT_BRANCH   = "main"
     }
 
     stages {
 
-        stage('Checkout Code') {
+        stage('Clone Repository') {
             steps {
                 git branch: "${GIT_BRANCH}",
                     credentialsId: 'github-creds',
-                    url: "${GIT_REPO}"
+                    url: "${GIT_URL}"
             }
         }
 
